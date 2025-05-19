@@ -1,54 +1,59 @@
 # 🛒 E-Commerce API
 
-This project is a fully-featured **RESTful E-Commerce API** built with **ASP.NET Core Web API**, **Entity Framework Core**, and **SQL Server**. It serves as the backend of an e-commerce platform supporting multiple roles such as Admin and Customer, and covers all major functionalities required for an online shopping system.
+This project simulates a real-world e-commerce backend system with robust architecture, validation, secure authentication, and integration with external services — all while following clean code practices.
 
 ---
 
 ## 🔧 Features
 
-### 🧑‍💼 Account & Authentication
-- User registration & login (JWT & Refresh Tokens)
-- Email confirmation & password reset
-- Role-based authorization (Admin, Customer)
-- Change password and update profile
+### 🔐 Authentication & Authorization
+- JWT-based Auth with Refresh Tokens
+- Two roles: Admin & Customer
+- Email confirmation, forgot/reset password, account lock/unlock
+- Role-based access control
+- Permission-based access control
 
-### 📦 Product Management
-- Add, update, delete products
-- Toggle product status for soft deletion
-- Support for multiple product types
-- Associate products with multiple images and types
+### 🛍️ Product Management
+- Admins can create, edit, delete, and toggle product visibility
+- Products grouped by types
+- Cloudinary integration for uploading and managing product images
 
-### 🛒 Cart & Orders
-- Customer cart management
-- Add/remove items
-- Place orders and view order history
-- Toggle order status
+### 🛒 Cart & Wishlist System
+- Customers can manage cart items and wishlists easily
+- Add/update/delete items
+- View cart content and wishlist by user
 
-### 💳 Payment
-- Handle order payments
-- Simulated webhook endpoint for external integrations
+### 📦 Orders
+- Customers place orders using their shipping addresses
+- View order history
+- Admin can manage order status
+- 
+### Payments
+- Stripe integration for secure order payment handling
+- Webhook support to simulate Stripe event handling
 
-### ✍️ Reviews
-- Add/edit/delete customer product reviews
-- Fetch reviews by product
+### 📝 Review System
+- Customers can add/edit/delete reviews
+- Fetch reviews by product or user
 
-### 💡 Wishlist
-- Add/remove items to/from wishlist
-- Get customer's wishlist
+### 🏠 Address Management
+- Manage multiple addresses per customer
+- Toggle address active/inactive
 
-### 🧾 Address Management
-- CRUD operations on customer addresses
-- Toggle address status
-- Link addresses to customer profiles
-
-### 🔐 Role Management
-- Create and assign roles
-- Enable/disable roles
+### 👤 Admin Capabilities
+- Admins can manage users (lock/unlock, toggle status)
+- Only Admins can manage products and product types
 
 ---
 
-## 🧱 Tech Stack
-- **Backend**: ASP.NET Core / C#
-- **Database**: SQL Server
-- **ORM**: Entity Framework Core
+## 🛠️ Tech Stack & Tools
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- Mapster – for fast and simple object mapping
+- FluentValidation – for robust input validation
+- Cloudinary – for cloud-based image management
+- Stripe – for payment gateway integration
+- ASP.NET Identity – for user and role management
+- Swagger – for auto-generated interactive API docs
 
