@@ -2,5 +2,6 @@
 
 public record ProductTypeResponse(
     int Id,
-    string Title
+    string Title,
+    string ImageUrl
 );

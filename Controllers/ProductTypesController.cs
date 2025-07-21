@@ -12,6 +12,12 @@ public class ProductTypesController(IProductTypeService productTypeService) : Co
     {
         return Ok(await _productTypeService.GetAllAsync(cancellationToken));
     }
+    
+    [HttpGet("Lockup")]
+    public async Task<IActionResult> GetLockup(CancellationToken cancellationToken)
+    {
+        return Ok(await _productTypeService.LockupAsync(cancellationToken));
+    }
 
     [HttpGet("{Id}")]
     public async Task<IActionResult> Get(int Id, CancellationToken cancellationToken)
@@ -24,7 +30,7 @@ public class ProductTypesController(IProductTypeService productTypeService) : Co
     }
 
     [HttpPost("")]
-    public async Task<IActionResult> Add(ProductTypeRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Add([FromForm] ProductTypeRequest request, CancellationToken cancellationToken)
     {
         var result = await _productTypeService.AddAsync(request, cancellationToken);
 
@@ -34,7 +40,7 @@ public class ProductTypesController(IProductTypeService productTypeService) : Co
     }
 
     [HttpPut("{Id}")]
-    public async Task<IActionResult> Update(int Id,  ProductTypeRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(int Id,[FromForm]  ProductTypeRequest request, CancellationToken cancellationToken)
     {
         var result = await _productTypeService.UpdateAsync(Id, request, cancellationToken);
 

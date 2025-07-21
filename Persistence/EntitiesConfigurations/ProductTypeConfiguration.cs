@@ -7,6 +7,7 @@ public class ProductTypeConfiguration : IEntityTypeConfiguration<ProductType>
         builder.HasIndex(x => x.Title).IsUnique();
 
         builder.Property(x => x.Title).HasMaxLength(150);
+        builder.Property(x => x.ImageUrl).HasMaxLength(150);
 
         builder.HasMany(x => x.Products)
             .WithOne(x => x.ProductType)

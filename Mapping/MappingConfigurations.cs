@@ -24,7 +24,7 @@ public class MappingConfigurations : IRegister
             .Ignore(dest => dest.ProductImages);
 
         config.NewConfig<Product, ProductResponse>()
-            .Map(dest => dest.ProductImages, src => src.ProductImages.Select(x => x.ImageUrl).ToList());
+            .Map(dest => dest.ProductImages, src => src.ProductImages.Adapt<List<ProductImagesResponse>>());
 
         config.NewConfig<UpdateProductRequest, Product>()
             .Ignore(dest => dest.ProductImages);
@@ -47,6 +47,15 @@ public class MappingConfigurations : IRegister
             .Map(dest => dest.UserPhone, src => src.CreatedBy.PhoneNumber)
             .Map(dest => dest.UserName, src => $"{src.CreatedBy.FirstName} {src.CreatedBy.LastName}")
             .Map(dest => dest.OrderDate, src => src.CreatedOn)
+            .Map(dest => dest.ShippingAddress, src => src.ShippingAddress);
+        
+        config.NewConfig<Order, GetAllOrdersResponse>()
+            .Map(dest => dest.UserId, src => src.CreatedById)
+            .Map(dest => dest.UserEmail, src => src.CreatedBy.Email)
+            .Map(dest => dest.UserPhone, src => src.CreatedBy.PhoneNumber)
+            .Map(dest => dest.UserName, src => $"{src.CreatedBy.FirstName} {src.CreatedBy.LastName}")
+            .Map(dest => dest.OrderDate, src => src.CreatedOn)
+            .Map(dest => dest.IsPaid, src => src.Payment != null && src.Payment.IsPaid)
             .Map(dest => dest.ShippingAddress, src => src.ShippingAddress);
 
         config.NewConfig<Review, ReviewResponse>()

@@ -22,6 +22,11 @@ public class OrderController(IOrderService orderService) : ControllerBase
     [HasPermission(Permissions.GetOrderInfo)]
     public async Task<IActionResult> GetByUserId(CancellationToken cancellationToken) =>
         Ok(await _orderService.GetByUserIdAsync(User.GetUserId()!, cancellationToken));
+    
+    [HttpGet("")]
+    [HasPermission(Permissions.GetOrderInfo)]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken) =>
+        Ok(await _orderService.GetAllAsync(cancellationToken));
 
 
     [HttpPost("")]

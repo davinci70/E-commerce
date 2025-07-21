@@ -8,5 +8,6 @@ public class Order : AuditableEntity
     public int ShippingAddressId { get; set; }
 
     public Address ShippingAddress { get; set; } = default!;
+    public Payment Payment { get; set; } = default!;
     public ICollection<OrderItem> OrderItems { get; set; } = [];
 }

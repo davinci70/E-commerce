@@ -80,6 +80,15 @@ public class OrderService(ApplicationDbContext context) : IOrderService
 
         return order is not null ? Result.Success(order) : Result.Failure<OrderResponse>(OrderErrors.NotFound);
     }
+    
+    public async Task<IEnumerable<GetAllOrdersResponse>> GetAllAsync(CancellationToken cancellationToken = default)
+     => await _context.Orders
+            .Include(oi => oi.OrderItems)
+            .Include(p => p.Payment)
+            .ProjectToType<GetAllOrdersResponse>()
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+
     public async Task<IEnumerable<OrderResponse>> GetByUserIdAsync(string UserId, CancellationToken cancellationToken = default)
     {
         return await _context.Orders

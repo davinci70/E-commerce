@@ -302,6 +302,16 @@
   },
   {
     "ContainingType": "e_commerce.Controllers.OrderController",
+    "Method": "GetAll",
+    "RelativePath": "api/Order",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "e_commerce.Controllers.OrderController",
     "Method": "Add",
     "RelativePath": "api/Order",
     "HttpMethod": "POST",
@@ -609,9 +619,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "e_commerce.Contracts.ProductTypes.ProductTypeRequest",
-        "IsRequired": true
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImageUrl",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -646,9 +661,14 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
-        "Type": "e_commerce.Contracts.ProductTypes.ProductTypeRequest",
-        "IsRequired": true
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImageUrl",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -667,6 +687,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "e_commerce.Controllers.ProductTypesController",
+    "Method": "GetLockup",
+    "RelativePath": "api/ProductTypes/Lockup",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -847,6 +877,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "e_commerce.Controllers.RolesController",
+    "Method": "GetAllPermissions",
+    "RelativePath": "api/Roles/Permissions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

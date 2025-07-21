@@ -9,5 +9,5 @@ public record ProductResponse(
     decimal Price,
     decimal Discount,
     int StockQuantity,
-    List<string> ProductImages
+    List<ProductImagesResponse> ProductImages
 );

@@ -10,6 +10,13 @@ public class RoleService(RoleManager<ApplicationRole> roleManager, ApplicationDb
             .Where(x => !x.IsDefault && (!x.IsDeleted || includeDisabled))
             .ProjectToType<RoleResponse>()
             .ToListAsync(cancellationToken);
+    
+    public async Task<IEnumerable<PermissionResponse>> GetAllPermissionsAsync(CancellationToken cancellationToken = default) =>
+        await _Context.RoleClaims
+        .Select(x => new { x.ClaimValue })
+        .Distinct()
+        .ProjectToType<PermissionResponse>()
+        .ToListAsync(cancellationToken);
 
     public async Task<Result<RoleDetailsResponse>> GetAsync(string Id)
     {

@@ -1,5 +1,4 @@
-﻿
-using System.Linq.Dynamic.Core;
+﻿using System.Linq.Dynamic.Core;
 
 namespace e_commerce.Services.Service;
 

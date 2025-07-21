@@ -785,6 +785,11 @@ namespace e_commerce.Persistence.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)

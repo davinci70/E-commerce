@@ -7,5 +7,8 @@ public class ProductTypeRequestValidator : AbstractValidator<ProductTypeRequest>
         RuleFor(x => x.Title)
             .NotEmpty()
             .Length(3, 150);
+
+        RuleFor(x => x.ImageUrl)
+            .NotEmpty();
     }
 }

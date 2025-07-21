@@ -18,14 +18,14 @@ public static class DependencyInjection
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
 
-        var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
+        //var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
 
         services.AddCors(options =>
             options.AddPolicy("MyPolicy", builder =>
                 builder
+                    .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithOrigins(allowedOrigins!)
             )
         );
 
@@ -43,8 +43,8 @@ public static class DependencyInjection
 
         services.AddOptions<MailSettings>()
             .BindConfiguration(nameof(MailSettings))
-            .ValidateDataAnnotations()
-            .ValidateOnStart();
+            .ValidateDataAnnotations();
+           // .ValidateOnStart();
 
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();

@@ -13,6 +13,12 @@ public class RolesController(IRoleService roleService) : ControllerBase
     {
         return Ok(await _roleService.GetAllAsync(includeDisabled, cancellationToken));
     }
+    
+    [HttpGet("Permissions")]
+    public async Task<IActionResult> GetAllPermissions(CancellationToken cancellationToken)
+    {
+        return Ok(await _roleService.GetAllPermissionsAsync(cancellationToken));
+    }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get([FromRoute] string id)
