@@ -44,6 +44,7 @@ public class OrderService(ApplicationDbContext context) : IOrderService
             var order = request.Adapt<Order>();
             order.OrderItems = orderItems;
             order.TotalPrice = totalPrice;
+            order.CreatedById = UserId;
 
             await _context.Orders.AddAsync(order, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);

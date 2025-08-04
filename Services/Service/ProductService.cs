@@ -13,7 +13,7 @@ public class ProductService(ApplicationDbContext context, CloudinaryService clou
             return Result.Failure<ProductResponse>(ProductTypeErrors.ProductTypeNotFound);
 
         var product = request.Adapt<Product>();
-
+        product.ThumbnailUrl = await _cloudinaryService.UploadImageAsync(request.ThumbnailUrl);
         if (request.ProductImages != null)
         {
             foreach (var image in request.ProductImages)
@@ -76,6 +76,7 @@ public class ProductService(ApplicationDbContext context, CloudinaryService clou
             return Result.Failure<ProductResponse>(ProductTypeErrors.ProductTypeNotFound);
 
         currentProduct = request.Adapt(currentProduct);
+        currentProduct.ThumbnailUrl = await _cloudinaryService.UploadImageAsync(request.ThumbnailUrl);
 
         if (request.RemoveImagesIds != null && request.RemoveImagesIds.Any())
         {
@@ -117,4 +118,34 @@ public class ProductService(ApplicationDbContext context, CloudinaryService clou
         await _context.SaveChangesAsync(cancellationToken);
         return Result.Success();
     }
+    public async Task<Result<PaginatedList<ProductsInCategoryResponse>>> GetByProductTypeIdAsync(int Id, RequestFilters filters, CancellationToken cancellationToken = default)
+    {
+        var query = _context.Products
+            .Where(x => !x.IsDeleted && x.ProductTypeId == Id);
+
+
+        if (!string.IsNullOrEmpty(filters.SearchValue))
+        {
+            query = query.Where(x => x.Name.Contains(filters.SearchValue));
+        }
+
+        if (!string.IsNullOrEmpty(filters.SortColumn))
+        {
+            query = query.OrderBy($"{filters.SortColumn} {filters.SortDirection}");
+        }
+
+        var source = query
+            .ProjectToType<ProductsInCategoryResponse>()
+            .AsNoTracking();
+
+        var products = await PaginatedList<ProductsInCategoryResponse>.CreateAsync(source, filters.PageNumber, filters.PageSize, cancellationToken);
+
+        return Result.Success(products);
+    }
+        
+        //=> await _context.Products
+    //    .Where(x => x.ProductTypeId == Id)
+    //    .ProjectToType<ProductsInCategoryResponse>()
+    //    .AsNoTracking()
+    //    .ToListAsync(cancellationToken);
 }

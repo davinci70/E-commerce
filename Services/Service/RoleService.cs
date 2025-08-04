@@ -5,11 +5,30 @@ public class RoleService(RoleManager<ApplicationRole> roleManager, ApplicationDb
     private readonly RoleManager<ApplicationRole> _roleManager = roleManager;
     private readonly ApplicationDbContext _Context = Context;
 
-    public async Task<IEnumerable<RoleResponse>> GetAllAsync(bool includeDisabled = false, CancellationToken cancellationToken = default) =>
-        await _roleManager.Roles
+    public async Task<IEnumerable<RoleDetailsResponse>> GetAllAsync(bool includeDisabled = false, CancellationToken cancellationToken = default)
+    {
+        var roles = await _roleManager.Roles
             .Where(x => !x.IsDefault && (!x.IsDeleted || includeDisabled))
-            .ProjectToType<RoleResponse>()
+            .AsNoTracking()
             .ToListAsync(cancellationToken);
+
+        var rolesResponse = new List<RoleDetailsResponse>();
+
+        foreach (var role in roles)
+        {
+            var permissions = await _roleManager.GetClaimsAsync(role);
+
+            rolesResponse.Add(new RoleDetailsResponse
+            (
+                role.Id,
+                role.Name!,
+                role.IsDeleted,
+                permissions.Select(x => x.Value).ToList()
+            ));
+        }
+
+        return rolesResponse;
+    }
     
     public async Task<IEnumerable<PermissionResponse>> GetAllPermissionsAsync(CancellationToken cancellationToken = default) =>
         await _Context.RoleClaims

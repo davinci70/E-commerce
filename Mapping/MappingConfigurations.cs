@@ -1,4 +1,6 @@
 ﻿
+using e_commerce.Services.Service;
+
 namespace e_commerce.Mapping;
 
 public class MappingConfigurations : IRegister
@@ -27,7 +29,7 @@ public class MappingConfigurations : IRegister
             .Map(dest => dest.ProductImages, src => src.ProductImages.Adapt<List<ProductImagesResponse>>());
 
         config.NewConfig<UpdateProductRequest, Product>()
-            .Ignore(dest => dest.ProductImages);
+        .Ignore(dest => dest.ProductImages);
 
         config.NewConfig<CartItem, CartItemResponse>()
             .Map(dest => dest.Name, src => src.Product.Name)

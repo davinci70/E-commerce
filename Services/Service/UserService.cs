@@ -1,4 +1,7 @@
-﻿namespace e_commerce.Services.Service;
+﻿using System.Linq.Dynamic.Core;
+using System.Linq;
+
+namespace e_commerce.Services.Service;
 
 public class UserService(UserManager<ApplicationUser> userManager,
     IRoleService roleService,
@@ -8,37 +11,92 @@ public class UserService(UserManager<ApplicationUser> userManager,
     private readonly IRoleService _roleService = roleService;
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<IEnumerable<UserResponse>> GetAllAsync(CancellationToken cancellationToken = default) => 
-        await (from u in _context.Users
-               join ur in _context.UserRoles
-               on u.Id equals ur.UserId
-               join r in _context.Roles
-               on ur.RoleId equals r.Id into roles
-               //where !roles.Any(x => x.Name == DefaultRoles.Customer)
-               where roles.Any()
-               select new
-               {
+    public async Task<Result<PaginatedList<UserResponse>>> GetAllAsync(RequestFilters filters, CancellationToken cancellationToken = default)
+    {
+        var query =
+            (from u in _context.Users
+             join ur in _context.UserRoles
+             on u.Id equals ur.UserId
+             join r in _context.Roles
+             on ur.RoleId equals r.Id into roles
+             //where !roles.Any(x => x.Name == DefaultRoles.Customer)
+             where roles.Any()
+             select new
+             {
 
-                   u.Id,
-                   u.FirstName,
-                   u.LastName,
-                   u.Email,
-                   u.PhoneNumber,
-                   u.IsDisabled,
-                   Roles = roles.Select(x => x.Name).ToList()
-               })
-                .GroupBy(u => new {u.Id, u.FirstName, u.LastName, u.Email, u.PhoneNumber, u.IsDisabled})
-                .Select(u => new UserResponse
-                (
-                    u.Key.Id,
-                    u.Key.FirstName,
-                    u.Key.LastName,
-                    u.Key.Email,
-                    u.Key.PhoneNumber,
-                    u.Key.IsDisabled,
-                    u.SelectMany(x => x.Roles)
-                ))
-                .ToListAsync(cancellationToken);
+                 u.Id,
+                 u.FirstName,
+                 u.LastName,
+                 u.Email,
+                 u.PhoneNumber,
+                 u.IsDisabled,
+                 Roles = roles.Select(x => x.Name).ToList()
+             });
+
+        if (!string.IsNullOrEmpty(filters.SearchValue))
+        {
+            query = query.Where(x => x.FirstName.Contains(filters.SearchValue)
+                || x.LastName.Contains(filters.SearchValue)
+                || x.Email.Contains(filters.SearchValue));
+        }
+
+        var groupedQuery = await query.GroupBy(u => new { u.Id, u.FirstName, u.LastName, u.Email, u.PhoneNumber, u.IsDisabled })
+              .Select(u => new UserResponse
+              (
+                  u.Key.Id,
+                  u.Key.FirstName,
+                  u.Key.LastName,
+                  u.Key.Email,
+                  u.Key.PhoneNumber,
+                  u.Key.IsDisabled,
+                  u.SelectMany(x => x.Roles)
+              )).ToListAsync(cancellationToken);
+
+        
+
+        if (!string.IsNullOrEmpty(filters.SortColumn))
+        {
+            query = query.OrderBy($"{filters.SortColumn} {filters.SortDirection}");
+        }
+
+        var source = query
+            .ProjectToType<UserResponse>()
+            .AsNoTracking();
+
+        var users = await PaginatedList<UserResponse>.CreateAsync(source, filters.PageNumber, filters.PageSize, cancellationToken);
+        return Result.Success(users);
+    }
+        //=> 
+        //await (from u in _context.Users
+        //       join ur in _context.UserRoles
+        //       on u.Id equals ur.UserId
+        //       join r in _context.Roles
+        //       on ur.RoleId equals r.Id into roles
+        //       //where !roles.Any(x => x.Name == DefaultRoles.Customer)
+        //       where roles.Any()
+        //       select new
+        //       {
+
+        //           u.Id,
+        //           u.FirstName,
+        //           u.LastName,
+        //           u.Email,
+        //           u.PhoneNumber,
+        //           u.IsDisabled,
+        //           Roles = roles.Select(x => x.Name).ToList()
+        //       })
+        //        .GroupBy(u => new {u.Id, u.FirstName, u.LastName, u.Email, u.PhoneNumber, u.IsDisabled})
+        //        .Select(u => new UserResponse
+        //        (
+        //            u.Key.Id,
+        //            u.Key.FirstName,
+        //            u.Key.LastName,
+        //            u.Key.Email,
+        //            u.Key.PhoneNumber,
+        //            u.Key.IsDisabled,
+        //            u.SelectMany(x => x.Roles)
+        //        ))
+        //        .ToListAsync(cancellationToken);
 
     public async Task<Result<UserResponse>> GetAsync(string UserId)
     {

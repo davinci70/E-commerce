@@ -1,4 +1,6 @@
 ﻿
+using CloudinaryDotNet.Actions;
+
 namespace e_commerce.Controllers;
 
 [Route("api/[controller]")]
@@ -9,7 +11,7 @@ public class OrderController(IOrderService orderService) : ControllerBase
 
     [HttpGet("{Id}")]
     [HasPermission(Permissions.GetOrderInfo)]
-    public async Task<IActionResult> Get(int Id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get([FromRoute] int Id, CancellationToken cancellationToken)
     {
         var result = await _orderService.GetByIdAsync(Id, cancellationToken);
 
@@ -31,7 +33,7 @@ public class OrderController(IOrderService orderService) : ControllerBase
 
     [HttpPost("")]
     [HasPermission(Permissions.PlaceOrder)]
-    public async Task<IActionResult> Add(OrderRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Add([FromBody] OrderRequest request, CancellationToken cancellationToken)
     {
         var result = await _orderService.AddAsync(User.GetUserId()!, request, cancellationToken);
 
@@ -40,11 +42,33 @@ public class OrderController(IOrderService orderService) : ControllerBase
             : result.ToProplem();
     }
 
+    [HttpPost("add-by-admin/{UserId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> AddByAdmin([FromRoute] string UserId, [FromBody] OrderRequest request, CancellationToken cancellationToken)
+    {
+        var result = await _orderService.AddAsync(UserId, request, cancellationToken);
+
+        return result.IsSuccess
+            ? CreatedAtAction(nameof(Get), new { id = result.Value.Id }, result.Value)
+            : result.ToProplem();
+    }
+
     [HttpPut("{Id}")]
     [HasPermission(Permissions.UpdateOrder)]
-    public async Task<IActionResult> Update(int Id, OrderRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] OrderRequest request, CancellationToken cancellationToken)
     {
         var result = await _orderService.UpdateAsync(Id, User.GetUserId()!, request, cancellationToken);
+
+        return result.IsSuccess
+            ? NoContent()
+            : result.ToProplem();
+    }
+    
+    [HttpPut("update-by-admin/{Id}/userId/{UserId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateByAdmin([FromRoute] int Id, [FromRoute] string UserId, [FromBody] OrderRequest request, CancellationToken cancellationToken)
+    {
+        var result = await _orderService.UpdateAsync(Id, UserId, request, cancellationToken);
 
         return result.IsSuccess
             ? NoContent()

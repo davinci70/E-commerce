@@ -1,5 +1,6 @@
 ﻿
 using static System.Net.Mime.MediaTypeNames;
+using System.Linq.Dynamic.Core;
 
 namespace e_commerce.Services.Service;
 
@@ -8,11 +9,28 @@ public class ProductTypeService(ApplicationDbContext context, CloudinaryService 
     private readonly ApplicationDbContext _context = context;
     private readonly CloudinaryService _cloudinaryService = cloudinaryService;
 
-    public async Task<IEnumerable<ProductTypeResponse>> GetAllAsync(CancellationToken cancellationToken = default) =>
-        await _context.ProductTypes
-        .ProjectToType<ProductTypeResponse>()
-        .AsNoTracking()
-        .ToListAsync(cancellationToken);
+    public async Task<Result<PaginatedList<ProductTypeResponse>>> GetAllAsync(RequestFilters filters, CancellationToken cancellationToken = default)
+    {
+        var query = _context.ProductTypes.AsQueryable();
+
+        if (!string.IsNullOrEmpty(filters.SearchValue))
+        {
+            query = query.Where(x => x.Title.Contains(filters.SearchValue));
+        }
+
+        if (!string.IsNullOrEmpty(filters.SortColumn))
+        {
+            query = query.OrderBy($"{filters.SortColumn} {filters.SortDirection}");
+        }
+
+        var source = query
+            .ProjectToType<ProductTypeResponse>()
+            .AsNoTracking();
+
+        var productTypes = await PaginatedList<ProductTypeResponse>.CreateAsync(source, filters.PageNumber, filters.PageSize, cancellationToken);
+        return Result.Success(productTypes);
+    }
+        
     
     public async Task<IEnumerable<ProductTypeLockupResponse>> LockupAsync(CancellationToken cancellationToken = default) =>
         await _context.ProductTypes

@@ -8,5 +8,6 @@ public record ProductRequest(
     decimal Price,
     decimal Discount,
     int StockQuantity,
+    IFormFile ThumbnailUrl,
     List<IFormFile>? ProductImages 
 );

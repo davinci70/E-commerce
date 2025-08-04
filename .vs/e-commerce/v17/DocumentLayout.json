@@ -1,36 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\mapping\\mappingconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:mapping\\mappingconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\services\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:services\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\contracts\\orders\\getallordersresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:contracts\\orders\\getallordersresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\services\\iservice\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:services\\iservice\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|c:\\users\\pc\\my_battlefield\\apis\\e-commerce v2\\e-commerce\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D241791F-4977-469A-B1B4-23B0808B3E05}|e-commerce.csproj|solutionrelative:entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,97 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MappingConfigurations.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Mapping\\MappingConfigurations.cs",
-              "RelativeDocumentMoniker": "Mapping\\MappingConfigurations.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Mapping\\MappingConfigurations.cs",
-              "RelativeToolTip": "Mapping\\MappingConfigurations.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAcwDkAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:34:07.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IOrderService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Services\\IService\\IOrderService.cs",
-              "RelativeDocumentMoniker": "Services\\IService\\IOrderService.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Services\\IService\\IOrderService.cs",
-              "RelativeToolTip": "Services\\IService\\IOrderService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:26:09.995Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "Controllers\\OrderController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:19:48.243Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GetAllOrdersResponse.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Contracts\\Orders\\GetAllOrdersResponse.cs",
-              "RelativeDocumentMoniker": "Contracts\\Orders\\GetAllOrdersResponse.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Contracts\\Orders\\GetAllOrdersResponse.cs",
-              "RelativeToolTip": "Contracts\\Orders\\GetAllOrdersResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:18:40.048Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Entities\\Payment.cs",
-              "RelativeDocumentMoniker": "Entities\\Payment.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Entities\\Payment.cs",
-              "RelativeToolTip": "Entities\\Payment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:11:39.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Entities\\Order.cs",
-              "RelativeDocumentMoniker": "Entities\\Order.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Entities\\Order.cs",
-              "RelativeToolTip": "Entities\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:10:41.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OrderService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Services\\Service\\OrderService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\OrderService.cs",
-              "ToolTip": "C:\\Users\\pc\\My_battlefield\\APIs\\e-commerce v2\\e-commerce\\Services\\Service\\OrderService.cs",
-              "RelativeToolTip": "Services\\Service\\OrderService.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAQwFQAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:09:17.409Z",
-              "EditorCaption": ""
             }
           ]
         }

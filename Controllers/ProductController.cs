@@ -9,7 +9,7 @@ public class ProductController(IProductService productService) : ControllerBase
     private readonly IProductService _productService = productService;
 
     [HttpGet("{Id}")]
-    [HasPermission(Permissions.GetProducts)]
+    //[HasPermission(Permissions.GetProducts)]
     public async Task<IActionResult> Get([FromRoute] int Id, CancellationToken cancellationToken)
     {
         var result = await _productService.GetAsync(Id, cancellationToken);
@@ -18,6 +18,10 @@ public class ProductController(IProductService productService) : ControllerBase
             ? Ok(result.Value)
             : result.ToProplem();
     }
+
+    [HttpGet("ProductType/{ProductTypeId}")]
+    public async Task<IActionResult> GetByProductTypeId([FromRoute] int ProductTypeId, [FromQuery] RequestFilters filters, CancellationToken cancellationToken)
+        => Ok(await _productService.GetByProductTypeIdAsync(ProductTypeId, filters, cancellationToken));
     
     [HttpGet("")]
     [HasPermission(Permissions.GetProducts)]

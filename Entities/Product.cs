@@ -10,6 +10,7 @@ public class Product : AuditableEntity
     public decimal Price { get; set; }
     public decimal Discount { get; set; }
     public int StockQuantity { get; set; }
+    public string? ThumbnailUrl { get; set; } = null;
     public bool IsDeleted { get; set; }
 
     public ProductType ProductType { get; set; } = default!;

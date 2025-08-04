@@ -23,5 +23,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         
          builder.Property(x => x.Discount)
             .HasPrecision(10, 2);
+
+        builder.Property(x => x.ThumbnailUrl)
+            .HasMaxLength (200);
     }
 }

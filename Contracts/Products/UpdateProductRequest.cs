@@ -8,6 +8,7 @@ public record UpdateProductRequest(
     decimal Price,
     decimal Discount,
     int StockQuantity,
+    IFormFile ThumbnailUrl,
     List<int>? RemoveImagesIds,
     List<IFormFile>? ProductImages
 );

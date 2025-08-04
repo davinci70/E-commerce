@@ -8,9 +8,9 @@ public class UsersController(IUserService userService) : ControllerBase
     private readonly IUserService _userService = userService;
 
     [HttpGet("")]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll([FromQuery] RequestFilters filters, CancellationToken cancellationToken)
     {
-        return Ok(await _userService.GetAllAsync(cancellationToken));
+        return Ok(await _userService.GetAllAsync(filters, cancellationToken));
     }
 
     [HttpGet("{id}")]

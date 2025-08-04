@@ -8,9 +8,9 @@ public class ProductTypesController(IProductTypeService productTypeService) : Co
     private readonly IProductTypeService _productTypeService = productTypeService;
 
     [HttpGet("")]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll([FromQuery] RequestFilters filters, CancellationToken cancellationToken)
     {
-        return Ok(await _productTypeService.GetAllAsync(cancellationToken));
+        return Ok(await _productTypeService.GetAllAsync(filters, cancellationToken));
     }
     
     [HttpGet("Lockup")]

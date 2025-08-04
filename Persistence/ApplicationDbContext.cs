@@ -38,8 +38,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
             if (entityEntry.State == EntityState.Added)
             {
-                if (entityEntry.Properties.Any(p => p.Metadata.Name == nameof(AuditableEntity.CreatedById)))
-                    entityEntry.Property(x => x.CreatedById).CurrentValue = currentUserId;
+                //if (entityEntry.Properties.Any(p => p.Metadata.Name == nameof(AuditableEntity.CreatedById)))
+                //    entityEntry.Property(x => x.CreatedById).CurrentValue = currentUserId;
+
+                var createdByProperty = entityEntry.Property(x => x.CreatedById);
+                if (string.IsNullOrEmpty((string?)createdByProperty.CurrentValue))
+                {
+                    createdByProperty.CurrentValue = currentUserId;
+                }
             }
             else if (entityEntry.State == EntityState.Modified)
             {
@@ -48,6 +54,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
                 if (entityEntry.Properties.Any(p => p.Metadata.Name == nameof(AuditableEntity.UpdatedOn)))
                     entityEntry.Property(x => x.UpdatedOn).CurrentValue = DateTime.UtcNow;
+
+                //var updatedByProp = entityEntry.Property(x => x.UpdatedById);
+                //if (string.IsNullOrEmpty((string?)updatedByProp.CurrentValue))
+                //    updatedByProp.CurrentValue = currentUserId;
+
+                //var updatedOnProp = entityEntry.Property(x => x.UpdatedOn);
+                //if (updatedOnProp.CurrentValue == null)
+                //    updatedOnProp.CurrentValue = DateTime.UtcNow;
             }
         }
 
